@@ -9,43 +9,33 @@ $articles = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<?=template_header('articles');?>
+<?= template_header('articles'); ?>
 
 <div class="container">
   <br>
-	<h2>Articles</h2><br>
-    <a href="add_article.php" class="btn btn-primary">Add Article</a><br><br>
-	<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Titre</th>
-      <th scope="col">image</th>
-      <th scope="col">description</th>
-      <th scope="col">categorie</th>
-      <th scope="col">Action</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach($articles as $item): ?>
-        <tr>
-        <th scope="row"><?= $item['id'] ?></th>
-        <th><?= $item['titre'] ?></th>
-        <th><img src="./images/<?= $item['image'] ?>" width="50px" height="50px" style="border-radius:50% ;" alt=""></th>
-        <th><?= $item['description'] ?></th>
-        <th><?= $item['name'] ?></th>
-        <th>
+  <h2 class="text text-center">Articles</h2><br>
+  <a href="add_article.php" class="btn btn-primary">Add Article</a><br><br>
+  <div class="row">
+    <?php foreach ($articles as $item) : ?>
+      <div class="col-4">
+        <div class="card" style="width: 18rem;">
+          <img src="./images/<?= $item['image'] ?>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><?= $item['titre'] ?></h5>
+            <p class="card-text"><?= $item['description'] ?></p>
+            <p class="card-text"><?= $item['name'] ?></p>
             <a href="update_categorie.php?id=<?= $item['id'] ?>" class="btn btn-warning">update</a>
             <a href="delete_article.php?id=<?= $item['id'] ?>" class="btn btn-danger">delete</a>
-        </th>
-        </tr>
+          </div>
+        </div>
+      </div>
     <?php endforeach; ?>
-  </tbody>
-</table>
+  </div>
+
 </div>
 
-    
+
 </body>
+
 </html>
-<?=template_footer()?>
+<?= template_footer() ?>
