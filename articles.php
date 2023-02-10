@@ -7,6 +7,8 @@ $query = $pdo->prepare('SELECT a.* , c.name FROM article a join categorie c on a
 $query->execute();
 $articles = $query->fetchAll(PDO::FETCH_ASSOC);
 
+
+
 ?>
 
 <?= template_header('articles'); ?>
@@ -24,7 +26,7 @@ $articles = $query->fetchAll(PDO::FETCH_ASSOC);
             <h5 class="card-title"><?= $item['titre'] ?></h5>
             <p class="card-text"><?= $item['description'] ?></p>
             <p class="card-text"><?= $item['name'] ?></p>
-            <a href="update_categorie.php?id=<?= $item['id'] ?>" class="btn btn-warning">update</a>
+            <a href="update_article.php?id=<?= $item['id'] ?>" class="btn btn-warning">update</a>
             <a href="delete_article.php?id=<?= $item['id'] ?>" class="btn btn-danger">delete</a>
           </div>
         </div>

@@ -3,9 +3,6 @@
 include('functions.php');
 $pdo = pdo_connect_mysql();
 
-$query = $pdo->prepare('SELECT * FROM categorie');
-$query->execute();
-$categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($_POST['btn'])) {
     $titre = isset($_POST['titre']) ? $_POST['titre'] : '';
@@ -13,7 +10,7 @@ if (isset($_POST['btn'])) {
     $image = $_FILES["image"]["name"];
     $tmpname = $_FILES["image"]["tmp_name"];
     $place = "images/";
-    move_uploaded_file($tmpname, $place . $image);
+    move_uploaded_file($tmpname, $place.$image);
     // 
     $description = isset($_POST['description']) ? $_POST['description'] : '';
     $categorie = isset($_POST['categorie']) ? $_POST['categorie'] : '';

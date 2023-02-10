@@ -1,4 +1,5 @@
 <?php
+session_start();
 function pdo_connect_mysql() {
     $DATABASE_HOST = 'localhost';
     $DATABASE_USER = 'root';
@@ -10,6 +11,13 @@ function pdo_connect_mysql() {
     	exit('Failed to connect to database!');
     }
 }
+
+
+$pdo = pdo_connect_mysql();
+
+$query = $pdo->prepare('SELECT * FROM categorie');
+$query->execute();
+$categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
 function template_header($title) {
     echo <<<EOT

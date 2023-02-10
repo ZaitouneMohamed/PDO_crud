@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
 <?=template_header('Home')?>
 
 <div class="container">
-    <h1>Add New Categorie</h1>
+    <h1>Update Categorie</h1>
 <form method="post">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Categorie Name</label>

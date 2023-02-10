@@ -3,9 +3,7 @@ include 'functions.php';
 
 $pdo = pdo_connect_mysql();
 
-$query = $pdo->prepare('SELECT * FROM categorie');
-$query->execute();
-$categories = $query->fetchAll(PDO::FETCH_ASSOC);
+
 
 ?>
 
