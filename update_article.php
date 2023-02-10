@@ -4,13 +4,21 @@ include('functions.php');
 $pdo = pdo_connect_mysql();
 
 if (isset($_GET['id'])) {
+
+  
     
     $stmt = $pdo->prepare('SELECT * FROM article WHERE id = ?');
     $stmt->execute([$_GET['id'] ]);
     $article = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($article['user_id'] != $_SESSION['user_id'] ) {
+      header('location:articles.php');
+    };
+
     if (isset($_POST['btn'])) {
         
         // image here
+        
         $old_image = $article['image'];
         $folder = "images/";
         unlink($folder.$old_image);
