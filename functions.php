@@ -20,6 +20,9 @@ $query->execute();
 $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
 function template_header($title) {
+  if (!isset($_SESSION['user_login_success'])) {
+    header('location:login.php');
+  }
     echo <<<EOT
     <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +58,7 @@ function template_header($title) {
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="logout.php">log out</a></li>
           </ul>
         </li>
       </ul>
@@ -68,6 +71,7 @@ EOT;
 function template_footer() {
     echo <<<EOT
         </body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </html>
     EOT;
     }
