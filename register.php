@@ -4,20 +4,20 @@ include 'functions.php';
 $pdo = pdo_connect_mysql();
 if (isset($_POST['btn'])) {
     
-    extract($_POST);
     
-    $query = $pdo->prepare('SELECT count(*) FROM users where email = ? and password = ? LIMIT 1');
-    $pass = md5($password);
-    $query->execute([$email,$pass]);
-    $data = $query->fetch(PDO::FETCH_ASSOC);
-    if ($data['count(*)'] == 1) {
-        echo 'all good';
-        $query2 = $pdo->prepare('SELECT * FROM users where email = ? and password = ? LIMIT 1');
-        $query2->execute([$email,md5($password)]);
-        $data2 = $query2->fetch(PDO::FETCH_ASSOC);
-        // echo 
-        $_SESSION['user_login_success'] = $data2['username'];
+    extract($_POST);
+    $query = $pdo->prepare('SELECT * FROM users where email = ? and password = ? LIMIT 1');
+    $query->execute([$email,md5($password)]);
+    $number_of_rows = $query->fetchColumn(); 
+    
+    if ($number_of_rows == 0) {
+        
+        $query2 = $pdo->prepare('INSERT INTO `users`( `username`, `email`, `password`) VALUES (?,?,?)');
+        $query2->execute([$username,$email,md5($password)]);
+        $_SESSION['user_login_success'] = $username;
         header('location:index.php');
+    }else {
+        echo 'ta rak deja m3ana';
     }
     
 }
@@ -46,12 +46,14 @@ if (isset($_POST['btn'])) {
             <form method="post">
 
             
-            <h3 class="mb-5">Sign in</h3>
+            <h3 class="mb-5">Sign up</h3>
 
+            <div class="form-outline mb-4">
+              <input type="text" id="typeEmailX-2" name="username" placeholder="username" class="form-control form-control-lg" />
+            </div>
             <div class="form-outline mb-4">
               <input type="email" id="typeEmailX-2" name="email" placeholder="Email" class="form-control form-control-lg" />
             </div>
-
             <div class="form-outline mb-4">
               <input type="password" id="typePasswordX-2" name="password" placeholder="Password" class="form-control form-control-lg" />
             </div>
@@ -59,7 +61,7 @@ if (isset($_POST['btn'])) {
             <button class="btn btn-primary btn-lg btn-block" name="btn">Login</button>
 
             <hr class="my-4">
-            <a href="register.php">or register</a>
+            <a href="login.php">Or Login</a>
             </form>
           </div>
         </div>
