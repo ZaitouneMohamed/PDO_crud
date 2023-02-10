@@ -1,5 +1,5 @@
 # PDO_crud
-This is a simple crud using php(PDO) and my-sql in back-end  , designed using html and , bootstrap and some js.
+This is a simple CRUD using php(PDO) and my-sql in back-end  , designed using html and , bootstrap and some js.
 
 ## Support Developer
 2. Add a Star 🌟  to this 👆 Repository
