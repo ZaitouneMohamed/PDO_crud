@@ -15,8 +15,8 @@ if (isset($_POST['btn'])) {
         $query2 = $pdo->prepare('SELECT * FROM users where email = ? and password = ? LIMIT 1');
         $query2->execute([$email,md5($password)]);
         $data2 = $query2->fetch(PDO::FETCH_ASSOC);
-        // echo 
-        $_SESSION['user_login_success'] = $data2['username'];
+        $_SESSION['user_id'] = $data2['id'];
+        $_SESSION['user_username'] = $data2['username'];
         header('location:index.php');
     }
     

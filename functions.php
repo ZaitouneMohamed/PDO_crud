@@ -20,7 +20,7 @@ $query->execute();
 $categories = $query->fetchAll(PDO::FETCH_ASSOC);
 
 function template_header($title) {
-  if (!isset($_SESSION['user_login_success'])) {
+  if (!isset($_SESSION['user_id'])) {
     header('location:login.php');
   }
     echo <<<EOT

@@ -15,8 +15,8 @@ if (isset($_POST['btn'])) {
     $description = isset($_POST['description']) ? $_POST['description'] : '';
     $categorie = isset($_POST['categorie']) ? $_POST['categorie'] : '';
 
-    $query = $pdo->prepare('INSERT INTO `article`(`titre`, `image`, `description`, `categorie_id`) VALUES (?,?,?,?)');
-    $query->execute([$titre,$image,$description,$categorie]);
+    $query = $pdo->prepare('INSERT INTO `article`(`titre`, `image`, `description`, `categorie_id`,`user_id`) VALUES (?,?,?,?,?)');
+    $query->execute([$titre,$image,$description,$categorie,$_SESSION['user_id']]);
 
     header('location:articles.php');
 }
