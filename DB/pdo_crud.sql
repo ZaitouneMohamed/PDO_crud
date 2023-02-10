@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2023 at 12:48 PM
+-- Generation Time: Feb 10, 2023 at 06:00 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -32,6 +32,7 @@ CREATE TABLE `article` (
   `titre` varchar(50) DEFAULT NULL,
   `image` varchar(50) DEFAULT NULL,
   `description` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `categorie_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -40,9 +41,10 @@ CREATE TABLE `article` (
 -- Dumping data for table `article`
 --
 
-INSERT INTO `article` (`id`, `titre`, `image`, `description`, `categorie_id`, `user_id`) VALUES
-(15, 'titre 1', 'product6.png', 'ngtkoik', 1, 3),
-(16, 'sder', 'brand4.png', 'sfez', 2, 4);
+INSERT INTO `article` (`id`, `titre`, `image`, `description`, `created_at`, `categorie_id`, `user_id`) VALUES
+(15, 'titre 1', 'product6.png', 'ngtkoik', '2023-02-09 23:00:00', 1, 3),
+(17, 'titre 1', 'product11.png', 'dfvyh', '2023-02-10 14:27:04', 2, 4),
+(19, 'titre 112', 'watch.png', 'rfefez', '2023-02-10 14:31:20', 2, 4);
 
 -- --------------------------------------------------------
 
@@ -117,7 +119,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `categorie`
