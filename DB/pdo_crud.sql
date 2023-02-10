@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2023 at 05:15 PM
+-- Generation Time: Feb 10, 2023 at 12:48 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -32,15 +32,17 @@ CREATE TABLE `article` (
   `titre` varchar(50) DEFAULT NULL,
   `image` varchar(50) DEFAULT NULL,
   `description` varchar(50) DEFAULT NULL,
-  `categorie_id` int(11) DEFAULT NULL
+  `categorie_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `article`
 --
 
-INSERT INTO `article` (`id`, `titre`, `image`, `description`, `categorie_id`) VALUES
-(5, 'titre 1', 'product10.png', 'aaaaaaaaaa', 1);
+INSERT INTO `article` (`id`, `titre`, `image`, `description`, `categorie_id`, `user_id`) VALUES
+(15, 'titre 1', 'product6.png', 'ngtkoik', 1, 3),
+(16, 'sder', 'brand4.png', 'sfez', 2, 4);
 
 -- --------------------------------------------------------
 
@@ -62,6 +64,27 @@ INSERT INTO `categorie` (`id`, `name`) VALUES
 (2, 'categorie 2'),
 (6, 'categorie 3');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `password` varchar(80) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(3, 'username', 'email@email.com', '5f4dcc3b5aa765d61d8327deb882cf99'),
+(4, 'zaitoune_37', 'user@user.com', '5f4dcc3b5aa765d61d8327deb882cf99');
+
 --
 -- Indexes for dumped tables
 --
@@ -71,12 +94,19 @@ INSERT INTO `categorie` (`id`, `name`) VALUES
 --
 ALTER TABLE `article`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `categorie_id` (`categorie_id`);
+  ADD KEY `categorie_id` (`categorie_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `categorie`
 --
 ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -87,13 +117,19 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `categorie`
 --
 ALTER TABLE `categorie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -103,7 +139,8 @@ ALTER TABLE `categorie`
 -- Constraints for table `article`
 --
 ALTER TABLE `article`
-  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`);
+  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id`),
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

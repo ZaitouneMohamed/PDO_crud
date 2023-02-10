@@ -23,6 +23,7 @@ function template_header($title) {
   if (!isset($_SESSION['user_id'])) {
     header('location:login.php');
   }
+   $username = $_SESSION['user_username'];
     echo <<<EOT
     <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +54,7 @@ function template_header($title) {
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            $username
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
