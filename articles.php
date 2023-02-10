@@ -7,7 +7,9 @@ $query = $pdo->prepare('SELECT a.* , c.name FROM article a join categorie c on a
 $query->execute();
 $articles = $query->fetchAll(PDO::FETCH_ASSOC);
 
-
+if (!isset($_SESSION['user_login_success'])) {
+  header('location:login.php');
+}
 
 ?>
 
