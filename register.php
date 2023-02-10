@@ -2,6 +2,11 @@
 include 'functions.php';
 
 $pdo = pdo_connect_mysql();
+
+if (isset($_SESSION['user_username'])  ) {
+  header('location:index.php');
+}
+
 if (isset($_POST['btn'])) {
     
     
