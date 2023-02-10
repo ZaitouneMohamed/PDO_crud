@@ -18,7 +18,7 @@ $articles = $query->fetchAll(PDO::FETCH_ASSOC);
   <a href="add_article.php" class="btn btn-primary">Add Article</a><br><br>
   <div class="row">
     <?php foreach ($articles as $item) : ?>
-      <div class="col-4">
+      <div class="col-4 mb-5">
         <div class="card" style="width: 18rem;">
           <img src="./images/<?= $item['image'] ?>" width="150px" height="200px" class="card-img-top" alt="...">
           <div class="card-body">
@@ -27,6 +27,7 @@ $articles = $query->fetchAll(PDO::FETCH_ASSOC);
               <p class="text"><?= $item['username'] ?></p>
               <p class="card-text"><?= $item['description'] ?></p>
               <p class="card-text"><?= $item['name'] ?></p>
+              <p class="card-text"><?= timeago($item['created_at']) ?></p>
               <?php 
                 if ($item['user_id'] === $_SESSION['user_id'] ) {
                   $id = $item['id'];
