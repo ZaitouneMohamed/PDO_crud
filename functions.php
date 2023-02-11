@@ -57,12 +57,15 @@ function template_header($title) {
         <li class="nav-item">
           <a class="nav-link" href="categorie.php">Categories</a>
         </li>
-        <li class="nav-item dropdown">
+EOT;
+  if (isset($_SESSION["user_username"])) {
+    echo <<<EOT
+     <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             hfguhe
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">profile</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="logout.php">log out</a></li>
           </ul>
@@ -72,6 +75,18 @@ function template_header($title) {
   </div>
 </nav>
 EOT;
+  }else {
+        echo <<<EOT
+     <li class="nav-item">
+          <a class="btn btn-success" href="login.php">login</a>
+          <a class="btn btn-warning" href="register.php">register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+EOT;
+  }
 }
 
 function template_footer() {

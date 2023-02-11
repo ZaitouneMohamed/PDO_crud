@@ -29,13 +29,15 @@ $articles = $query->fetchAll(PDO::FETCH_ASSOC);
               <p class="card-text"><?= $item['name'] ?></p>
               <p class="card-text"><?= timeago($item['created_at']) ?></p>
               <?php 
-                if ($item['user_id'] === $_SESSION['user_id'] ) {
-                  $id = $item['id'];
-                  echo <<<EOT
-                    <a href="update_article.php?id=$id" class="btn btn-warning">update</a>
-                    <a href="delete_article.php?id=$id" class="btn btn-danger">delete</a> 
-                  EOT;;
-                };
+                if (isset($_SESSION['user_id'])) {
+                  if ($item['user_id'] === $_SESSION['user_id'] ) {
+                    $id = $item['id'];
+                    echo <<<EOT
+                      <a href="update_article.php?id=$id" class="btn btn-warning">update</a>
+                      <a href="delete_article.php?id=$id" class="btn btn-danger">delete</a> 
+                    EOT;;
+                  };
+                }
               ?>
               <a href="view.php?id=<?= $item['id'] ?>" class="btn btn-success">view</a> 
             </center>

@@ -19,29 +19,31 @@ $article = $query->fetch(PDO::FETCH_ASSOC);
   <br>
   <h2 class="text text-center">View Article</h2><br>
   <div class="row" style="margin-left: 35%;">
-      <div class="col-3">
-        <div class="card" style="width: 18rem;">
-          <img src="./images/<?= $article['image'] ?>" width="150px" height="200px" class="card-img-top" alt="...">
-          <div class="card-body">
-            <center>
-              <h5 class="card-title"><?= $article['titre'] ?></h5>
-              <p class="text"><?= $article['username'] ?></p>
-              <p class="card-text"><?= $article['description'] ?></p>
-              <p class="card-text"><?= $article['name'] ?></p>
-              <?php 
-                if ($article['user_id'] === $_SESSION['user_id'] ) {
-                  $id = $article['id'];
-                  echo <<<EOT
+    <div class="col-3">
+      <div class="card" style="width: 18rem;">
+        <img src="./images/<?= $article['image'] ?>" width="150px" height="200px" class="card-img-top" alt="...">
+        <div class="card-body">
+          <center>
+            <h5 class="card-title"><?= $article['titre'] ?></h5>
+            <p class="text"><?= $article['username'] ?></p>
+            <p class="card-text"><?= $article['description'] ?></p>
+            <p class="card-text"><?= $article['name'] ?></p>
+            <?php
+            if (isset($_SESSION['user_id'])) {
+              if ($article['user_id'] === $_SESSION['user_id']) {
+                $id = $article['id'];
+                echo <<<EOT
                     <a href="update_article.php?id=$id" class="btn btn-warning">update</a>
                     <a href="delete_article.php?id=$id" class="btn btn-danger">delete</a> 
                   EOT;;
-                };
-              ?>
-            </center>
-            
-          </div>
+              };
+            };
+            ?>
+          </center>
+
         </div>
       </div>
+    </div>
   </div>
 
 </div>

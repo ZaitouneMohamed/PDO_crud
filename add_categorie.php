@@ -2,7 +2,7 @@
 
 include('functions.php');
 $pdo = pdo_connect_mysql();
-
+check();
 if (isset($_POST['btn'])) {
     $name = isset($_POST['name']) ? $_POST['name'] : '';
 

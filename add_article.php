@@ -3,6 +3,7 @@
 include('functions.php');
 $pdo = pdo_connect_mysql();
 
+check();
 
 if (isset($_POST['btn'])) {
     $titre = isset($_POST['titre']) ? $_POST['titre'] : '';
