@@ -27,7 +27,7 @@ $articles = $query->fetchAll();
 <div class="container">
     <div class="d-flex justify-content-center" >
     <div class="card" style="width: 18rem;">
-        <div class="card-body">
+        <div class="card-body text-center">
             <h5 class="card-title"><?= $item['username'] ?></h5>
             <p class="card-text"><?= $item['email'] ?></p>
             <div class="d-flex">
